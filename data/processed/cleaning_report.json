@@ -1,0 +1,23 @@
+{
+  "source_rows": 20684,
+  "located": 20557,
+  "coords_original": 16611,
+  "coords_repaired": 3946,
+  "coords_missing": 113,
+  "outside_india": 14,
+  "state_filled_from_coordinates": 271,
+  "states_filled": {
+    "Uttarakhand": 223,
+    "Bihar": 12,
+    "Assam": 9,
+    "Dadra & Nagar Haveli and Daman & Diu": 7,
+    "Arunachal Pradesh": 5,
+    "Uttar Pradesh": 4,
+    "Delhi": 2,
+    "Rajasthan": 2,
+    "Telangana": 2,
+    "West Bengal": 2,
+    "Haryana": 1,
+    "Gujarat": 1
+  }
+}

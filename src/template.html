@@ -1,0 +1,436 @@
+<title>India EV Charger Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/*__LEAFLET_CSS__*/
+/*__CLUSTER_CSS__*/
+/* Layout: full-height map with a left control rail (bottom sheet on phones). Highway-signage type, Indian NH milestone motif for route km. */
+:root{
+  --bg:#f3f5f6; --panel:#ffffff; --ink:#18232d; --muted:#5d6b78; --line:#dde3e8;
+  --sea:#d3dee6; --land:#f7f8f6; --border:#b5c1cb; --road:#c4ccd3;
+  --route:#3646b5; --route-soft:rgba(54,70,181,.14); --warn:#d9480f;
+  --s0:#7d8b99; --s1:#1f9c8c; --s2:#d99a1e; --s3:#c2185b;
+  --stone:#ffffff; --stone-cap:#f5c518; --stone-ink:#1b1b1b;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#10161c; --panel:#161e26; --ink:#e6ecf1; --muted:#93a1ae; --line:#26323d;
+  --sea:#0b1218; --land:#1b252e; --border:#3a4955; --road:#33414d;
+  --route:#8fa0ff; --route-soft:rgba(143,160,255,.16); --warn:#ff8a4c;
+  --s0:#8d9aa7; --s1:#3cc7b4; --s2:#f0b43c; --s3:#ff5c93;
+  --stone:#e9ecef; --stone-cap:#f5c518; --stone-ink:#141414; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#10161c; --panel:#161e26; --ink:#e6ecf1; --muted:#93a1ae; --line:#26323d;
+  --sea:#0b1218; --land:#1b252e; --border:#3a4955; --road:#33414d;
+  --route:#8fa0ff; --route-soft:rgba(143,160,255,.16); --warn:#ff8a4c;
+  --s0:#8d9aa7; --s1:#3cc7b4; --s2:#f0b43c; --s3:#ff5c93;
+  --stone:#e9ecef; --stone-cap:#f5c518; --stone-ink:#141414; color-scheme:dark }
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45;overflow:hidden}
+#app{display:grid;grid-template-columns:min(390px,38vw) 1fr;height:100%}
+#panel{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0;min-height:0}
+#map{background:var(--sea);min-height:0}
+header.top{padding:16px 18px 12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+h1{font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:.01em;margin:0;text-wrap:balance}
+.sub{color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:4px;padding:10px 18px 0;border-bottom:1px solid var(--line)}
+.tab{font:600 13px var(--f-display);letter-spacing:.08em;text-transform:uppercase;background:none;border:0;color:var(--muted);padding:8px 10px 10px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--route)}
+.tab:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--route);outline-offset:2px}
+.scroll{overflow:auto;flex:1;min-height:0}
+section.pane{padding:16px 18px 24px;display:flex;flex-direction:column;gap:14px}
+label.lbl,.lbl{font:600 11px var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:5px;position:relative}
+.row{display:flex;gap:8px;align-items:center}
+.inp{flex:1;min-width:0;font:500 15px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 10px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none;border:2px solid var(--panel);box-shadow:0 0 0 1.5px var(--route)}
+.dot.a{background:var(--panel)} .dot.b{background:var(--route)}
+.icon-btn{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:6px;height:38px;padding:0 9px;cursor:pointer;font:500 12px var(--f-body);display:inline-flex;align-items:center;gap:4px}
+.icon-btn:hover{color:var(--ink);border-color:var(--border)}
+.icon-btn.on{background:var(--route-soft);color:var(--route);border-color:var(--route)}
+.ac{position:absolute;top:100%;left:20px;right:0;z-index:1000;background:var(--panel);border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 28px rgba(0,0,0,.18);max-height:260px;overflow:auto;margin-top:4px}
+.ac div{padding:7px 10px;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+.ac div small{color:var(--muted);white-space:nowrap}
+.ac div.hl,.ac div:hover{background:var(--route-soft)}
+.primary{font:600 15px var(--f-display);letter-spacing:.04em;background:var(--route);color:var(--panel);border:0;border-radius:6px;padding:10px 14px;cursor:pointer;flex:1}
+.primary:disabled{opacity:.5;cursor:default}
+select.inp{padding:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:5px 10px 5px 8px;font:500 13px var(--f-body);cursor:pointer;user-select:none}
+.chip .sw{width:10px;height:10px;border-radius:50%}
+.chip[aria-pressed="false"]{color:var(--muted);opacity:.55}
+.chip[aria-pressed="false"] .sw{background:transparent!important;box-shadow:inset 0 0 0 1.5px var(--muted)}
+.chip small{font-family:var(--f-mono);color:var(--muted);font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.stat{background:var(--panel);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat b{font:600 22px var(--f-display);font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{color:var(--muted);font-size:12px}
+.stat.warn b{color:var(--warn)}
+.note{font-size:12.5px;color:var(--muted)}
+.note.alert{color:var(--warn)}
+a{color:var(--route)}
+ol.stops{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ol.stops li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:9px 4px;border-top:1px solid var(--line);cursor:pointer;align-items:start}
+ol.stops li:hover{background:var(--route-soft)}
+.stone{width:44px;height:44px;border-radius:22px 22px 4px 4px;background:var(--stone);border:1px solid #9aa3ab;overflow:hidden;display:flex;flex-direction:column;align-items:center;font-family:var(--f-display);color:var(--stone-ink)}
+.stone i{display:block;width:100%;height:15px;background:var(--stone-cap);font-style:normal;font-size:9px;font-weight:700;line-height:15px;text-align:center;letter-spacing:.06em}
+.stone b{font-size:15px;line-height:24px;font-variant-numeric:tabular-nums}
+.stop-t{display:flex;flex-direction:column;gap:1px;min-width:0}
+.stop-t strong{font:600 14px var(--f-body);display:flex;gap:6px;align-items:center}
+.stop-t span{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kw{font:500 11.5px var(--f-mono);border-radius:4px;padding:1px 5px;color:var(--ink);background:color-mix(in srgb,var(--kc) 26%,transparent);box-shadow:inset 3px 0 0 var(--kc)}
+.legend{display:flex;flex-direction:column;gap:6px}
+.legend .r{display:flex;justify-content:space-between;gap:8px}
+.legend .r span:first-child{display:flex;align-items:center;gap:8px}
+.legend .sw{width:10px;height:10px;border-radius:50%}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 10px}
+.ops label{display:flex;gap:7px;align-items:center;font-size:13.5px;cursor:pointer;min-width:0}
+.ops label span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ops label small{font-family:var(--f-mono);color:var(--muted);font-size:11px}
+.linkbtn{background:none;border:0;color:var(--route);cursor:pointer;font:500 12.5px var(--f-body);padding:0}
+hr.sep{border:0;border-top:1px solid var(--line);margin:2px 0;width:100%}
+.foot{font-size:11.5px;color:var(--muted);padding:10px 18px;border-top:1px solid var(--line)}
+/* map bits */
+.leaflet-container{font-family:var(--f-body);background:var(--sea)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.leaflet-popup-content{margin:12px 14px;font-size:13px;line-height:1.45;min-width:220px}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.pp h3{font:700 16px var(--f-display);margin:0 0 2px}
+.pp .meta{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:8px 0}
+.pp .meta dt{color:var(--muted)} .pp .meta dd{margin:0}
+.leaflet-control-zoom a,.leaflet-bar a{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--panel) 80%,transparent)!important;color:var(--muted)!important;font-size:10.5px}
+.leaflet-control-attribution a{color:var(--muted)}
+.cl{border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.cl span{background:var(--panel);color:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font:600 12px var(--f-display);font-variant-numeric:tabular-nums}
+.city{font:600 11px var(--f-display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;text-shadow:0 0 3px var(--land),0 0 3px var(--land);pointer-events:none;transform:translate(-50%,-50%)}
+.pin{width:22px;height:22px;border-radius:50%;border:3px solid var(--route);background:var(--panel);box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font:700 11px var(--f-display);color:var(--route)}
+.pin.b{background:var(--route);color:var(--panel)}
+.dim .leaflet-stations-pane,.dim .leaflet-marker-pane .cl{opacity:.28}
+.picking #map{cursor:crosshair}
+.picking .leaflet-container{cursor:crosshair}
+.toast{position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:1000;background:var(--ink);color:var(--panel);padding:7px 12px;border-radius:6px;font-size:13px}
+#sheetToggle{display:none}
+@media (max-width:760px){
+  #app{grid-template-columns:1fr;grid-template-rows:1fr auto}
+  #map{grid-row:1}
+  #panel{grid-row:2;border-right:0;border-top:1px solid var(--line);max-height:52vh}
+  #panel.collapsed .scroll,#panel.collapsed .tabs,#panel.collapsed .foot,#panel.collapsed .sub{display:none}
+  header.top{padding:10px 16px;flex-direction:row;align-items:center;justify-content:space-between}
+  h1{font-size:18px}
+  #sheetToggle{display:inline-flex}
+  section.pane{padding:14px 16px 20px}
+  .tabs{padding:6px 16px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div id="app">
+  <aside id="panel">
+    <header class="top">
+      <div>
+        <h1>India EV Charger Map</h1>
+        <div class="sub" id="subline"></div>
+      </div>
+      <button class="icon-btn" id="sheetToggle" aria-expanded="true">Hide</button>
+    </header>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-route" aria-selected="true" aria-controls="pane-route">Route</button>
+      <button class="tab" role="tab" id="tab-filter" aria-selected="false" aria-controls="pane-filter">Filters</button>
+    </div>
+    <div class="scroll">
+      <section class="pane" id="pane-route" role="tabpanel">
+        <div class="field">
+          <label class="lbl" for="from">From</label>
+          <div class="row"><span class="dot a"></span><input class="inp" id="from" autocomplete="off" placeholder="City, town or lat,lon"><button class="icon-btn" id="pickFrom" title="Pick the start point on the map">Pick</button></div>
+          <div class="ac" id="ac-from" hidden></div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="to">To</label>
+          <div class="row"><span class="dot b"></span><input class="inp" id="to" autocomplete="off" placeholder="City, town or lat,lon"><button class="icon-btn" id="pickTo" title="Pick the destination on the map">Pick</button></div>
+          <div class="ac" id="ac-to" hidden></div>
+        </div>
+        <div class="row">
+          <div class="field" style="flex:1">
+            <label class="lbl" for="corridor">Chargers within</label>
+            <select class="inp" id="corridor">
+              <option value="2">2 km of the road</option>
+              <option value="5" selected>5 km of the road</option>
+              <option value="10">10 km of the road</option>
+              <option value="25">25 km of the road</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <button class="primary" id="go">Show route and chargers</button>
+          <button class="icon-btn" id="swap" title="Swap start and destination">Swap</button>
+          <button class="icon-btn" id="clear" title="Clear the route">Clear</button>
+        </div>
+        <div id="routeOut" class="pane" style="padding:0;gap:12px"></div>
+      </section>
+      <section class="pane" id="pane-filter" role="tabpanel" hidden>
+        <div class="field">
+          <span class="lbl">Charging speed</span>
+          <div class="chips" id="speedChips"></div>
+        </div>
+        <div class="field">
+          <label class="lbl" for="stateSel">Zoom to state</label>
+          <select class="inp" id="stateSel"><option value="">All of India</option></select>
+        </div>
+        <div class="field">
+          <div class="row" style="justify-content:space-between"><span class="lbl">Operator</span><span><button class="linkbtn" id="opsAll">All</button> · <button class="linkbtn" id="opsNone">None</button></span></div>
+          <div class="ops" id="ops"></div>
+        </div>
+        <div class="field">
+          <span class="lbl">Ownership</span>
+          <div class="chips" id="ownChips"></div>
+        </div>
+        <hr class="sep">
+        <p class="note" id="dataNote"></p>
+      </section>
+    </div>
+    <div class="foot" id="foot"></div>
+  </aside>
+  <div id="map" role="application" aria-label="Map of EV charging stations in India"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script>/*__DATA__*/</script>
+<script>
+(function(){
+const D=window.EVDATA, S=D.s, N=S.lat.length;
+const SPEED=[{k:'Slow',r:'up to 3.3 kW'},{k:'AC',r:'7–14 kW'},{k:'DC',r:'15–24 kW'},{k:'Fast DC',r:'25–120 kW'}];
+const fmt=n=>n.toLocaleString('en-IN');
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let C={}; function readColors(){['--sea','--land','--border','--road','--route','--warn','--s0','--s1','--s2','--s3','--panel','--ink'].forEach(k=>C[k]=css(k));}
+readColors();
+const spCol=i=>C['--s'+i];
+
+// ---------- state ----------
+const F={sp:[1,1,1,1], ops:D.ops.map(()=>1), own:[1,1]};
+const visible=i=>F.sp[S.sp[i]]&&F.ops[S.op[i]]&&F.own[S.gv[i]];
+
+// ---------- map ----------
+const IN=L.latLngBounds([6.2,67.8],[37.4,97.6]);
+const map=L.map('map',{zoomControl:false,minZoom:4,maxZoom:17,maxBounds:IN.pad(0.35),preferCanvas:true,worldCopyJump:false,attributionControl:true});
+L.control.zoom({position:'topright'}).addTo(map);
+map.attributionControl.setPrefix(false).addAttribution('Stations: EV PCS list · Boundaries: DataMeet · Highways: Natural Earth');
+map.createPane('land').style.zIndex=200;
+map.createPane('roads').style.zIndex=250;
+map.createPane('labels').style.zIndex=300;
+map.createPane('stations').style.zIndex=420;
+map.createPane('route').style.zIndex=450;
+map.createPane('routeSt').style.zIndex=460;
+const rLand=L.canvas({pane:'land'}), rRoads=L.canvas({pane:'roads'}), rSt=L.canvas({pane:'stations'}), rRoute=L.canvas({pane:'route'}), rRouteSt=L.canvas({pane:'routeSt'});
+const landLayer=L.geoJSON(D.geo,{pane:'land',renderer:rLand,interactive:false,style:()=>({color:C['--border'],weight:1,fillColor:C['--land'],fillOpacity:1})}).addTo(map);
+const GC=D.g.c;
+const roadLayer=L.layerGroup(D.g.ch.map(ch=>L.polyline(ch.map(i=>GC[i]),{pane:'roads',renderer:rRoads,interactive:false,color:C['--road'],weight:1.4,opacity:1}))).addTo(map);
+const cityLayer=L.layerGroup(D.big.map(c=>L.marker([c[1],c[2]],{pane:'labels',interactive:false,keyboard:false,icon:L.divIcon({className:'',html:'<div class="city">'+c[0]+'</div>',iconSize:[0,0]})}))).addTo(map);
+function cityVis(){const z=map.getZoom(); if(z>=6&&z<=10){if(!map.hasLayer(cityLayer))map.addLayer(cityLayer)}else map.removeLayer(cityLayer)}
+map.on('zoomend',cityVis);
+map.fitBounds(IN,{padding:[10,10]}); cityVis();
+
+// ---------- stations ----------
+const markers=new Array(N);
+for(let i=0;i<N;i++){
+  const m=L.circleMarker([S.lat[i],S.lon[i]],{renderer:rSt,pane:'stations',radius:5,weight:1.2,color:C['--panel'],fillColor:spCol(S.sp[i]),fillOpacity:.95});
+  m.idx=i; markers[i]=m;
+}
+const cluster=L.markerClusterGroup({chunkedLoading:true,maxClusterRadius:z=>z<6?70:z<9?55:40,disableClusteringAtZoom:14,showCoverageOnHover:false,spiderfyOnMaxZoom:true,
+  iconCreateFunction:cl=>{
+    const ms=cl.getAllChildMarkers(), c=[0,0,0,0]; ms.forEach(m=>c[S.sp[m.idx]]++);
+    const n=ms.length, sz=Math.round(30+Math.min(30,Math.log10(n)*11));
+    let a=0, stops=[]; c.forEach((v,k)=>{if(!v)return; const b=a+v/n*360; stops.push(spCol(k)+' '+a.toFixed(1)+'deg '+b.toFixed(1)+'deg'); a=b;});
+    const inner=sz-8;
+    return L.divIcon({className:'',iconSize:[sz,sz],html:'<div class="cl" style="width:'+sz+'px;height:'+sz+'px;background:conic-gradient('+stops.join(',')+')"><span style="width:'+inner+'px;height:'+inner+'px;font-size:'+(n>999?11:12)+'px">'+(n>=10000?(n/1000).toFixed(0)+'k':fmt(n))+'</span></div>'});
+  }});
+cluster.on('click',e=>openStation(e.layer.idx,e.layer.getLatLng()));
+map.addLayer(cluster);
+function refreshStations(){
+  cluster.clearLayers();
+  const arr=[]; for(let i=0;i<N;i++) if(visible(i)) arr.push(markers[i]);
+  cluster.addLayers(arr);
+  document.getElementById('foot').textContent=fmt(arr.length)+' of '+fmt(N)+' stations shown · '+fmt(arr.reduce((s,m)=>s+S.n[m.idx],0))+' connectors';
+  if(route) analyseRoute();
+}
+
+function title(s){return s&&s===s.toUpperCase()&&s.length>3?s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()):s}
+function popupHtml(i){
+  const city=title(D.cities[S.ci[i]]), dist=title(D.dists[S.di[i]]), st=D.states[S.st[i]]||'';
+  const g='https://www.google.com/maps/search/?api=1&query='+S.lat[i]+','+S.lon[i];
+  return '<div class="pp"><h3>'+D.ops[S.op[i]]+'</h3><div><span class="kw" style="--kc:'+spCol(S.sp[i])+'">'+S.kw[i]+' kW</span> '+D.types[S.ty[i]]+'</div>'+
+  '<dl class="meta"><dt>Connectors</dt><dd>'+S.n[i]+'</dd><dt>Speed</dt><dd>'+SPEED[S.sp[i]].k+'</dd><dt>Owner</dt><dd>'+(S.gv[i]?'Government (PSU)':'Private')+'</dd><dt>Place</dt><dd>'+[city,dist!==city?dist:'',st].filter(Boolean).join(', ')+'</dd></dl>'+
+  '<div class="note">'+esc(S.ad[i])+'</div><div style="margin-top:8px;display:flex;gap:12px;flex-wrap:wrap"><a href="'+g+'" target="_blank" rel="noopener">Open in Google Maps</a><span class="mono note">'+S.lat[i].toFixed(4)+', '+S.lon[i].toFixed(4)+'</span></div></div>';
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function openStation(i,ll){L.popup({maxWidth:300}).setLatLng(ll||[S.lat[i],S.lon[i]]).setContent(popupHtml(i)).openOn(map)}
+
+// ---------- filters UI ----------
+const cnt=(f)=>{let c=0;for(let i=0;i<N;i++)if(f(i))c++;return c};
+const spCounts=[0,0,0,0], opCounts=D.ops.map(()=>0), ownCounts=[0,0];
+for(let i=0;i<N;i++){spCounts[S.sp[i]]++;opCounts[S.op[i]]++;ownCounts[S.gv[i]]++;}
+const spEl=document.getElementById('speedChips');
+SPEED.forEach((s,k)=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed','true');b.dataset.k=k;
+  b.innerHTML='<span class="sw" style="background:var(--s'+k+')"></span>'+s.k+' <small>'+s.r+'</small>';b.title=fmt(spCounts[k])+' stations';
+  b.onclick=()=>{F.sp[k]=F.sp[k]?0:1;b.setAttribute('aria-pressed',F.sp[k]?'true':'false');refreshStations();};spEl.appendChild(b)});
+const opsEl=document.getElementById('ops');
+D.ops.forEach((o,k)=>{const l=document.createElement('label');l.innerHTML='<input type="checkbox" id="op'+k+'" checked><span>'+o+'</span><small>'+fmt(opCounts[k])+'</small>';
+  l.querySelector('input').onchange=e=>{F.ops[k]=e.target.checked?1:0;refreshStations()};opsEl.appendChild(l)});
+function setAllOps(v){D.ops.forEach((o,k)=>{F.ops[k]=v;document.getElementById('op'+k).checked=!!v});refreshStations()}
+document.getElementById('opsAll').onclick=()=>setAllOps(1);document.getElementById('opsNone').onclick=()=>setAllOps(0);
+const ownEl=document.getElementById('ownChips');
+[['Government (PSU)',1],['Private',0]].forEach(([t,k])=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed','true');
+  b.innerHTML=t+' <small>'+fmt(ownCounts[k])+'</small>';b.onclick=()=>{F.own[k]=F.own[k]?0:1;b.setAttribute('aria-pressed',F.own[k]?'true':'false');refreshStations()};ownEl.appendChild(b)});
+const stSel=document.getElementById('stateSel');
+const stCount=D.states.map(()=>0); for(let i=0;i<N;i++) if(S.st[i]>=0) stCount[S.st[i]]++;
+D.states.forEach((s,k)=>{const o=document.createElement('option');o.value=k;o.textContent=s+' ('+fmt(stCount[k])+')';stSel.appendChild(o)});
+stSel.onchange=()=>{const k=stSel.value; if(k===''){map.fitBounds(IN);return}
+  let b=null; for(let i=0;i<N;i++) if(S.st[i]==k){const ll=L.latLng(S.lat[i],S.lon[i]); b=b?b.extend(ll):L.latLngBounds(ll,ll)}
+  if(b) map.fitBounds(b.pad(0.08),{maxZoom:11})};
+const M=D.meta;
+document.getElementById('subline').textContent=fmt(N)+' public charging stations across '+D.states.length+' states and UTs';
+document.getElementById('dataNote').innerHTML='Mapped '+fmt(M.located)+' of '+fmt(M.rows)+' stations in the source list. '+fmt(M.repaired)+' had their coordinates shifted by the PDF export and were repaired. '+fmt(M.unlocated)+' have no usable coordinates and are not shown. Cluster rings show the mix of charging speeds inside each bubble.';
+
+// tabs
+const tabs=[['tab-route','pane-route'],['tab-filter','pane-filter']];
+tabs.forEach(([t,p])=>document.getElementById(t).onclick=()=>tabs.forEach(([t2,p2])=>{const on=t2===t;document.getElementById(t2).setAttribute('aria-selected',on);document.getElementById(p2).hidden=!on}));
+const panel=document.getElementById('panel'), tg=document.getElementById('sheetToggle');
+tg.onclick=()=>{const c=panel.classList.toggle('collapsed');tg.textContent=c?'Show':'Hide';tg.setAttribute('aria-expanded',!c);setTimeout(()=>map.invalidateSize(),50)};
+
+// ---------- places / autocomplete ----------
+const P=D.places.map(p=>({n:p[0],s:p[1],lat:p[2],lon:p[3],w:p[4]>0?1e6+p[4]:-p[4],l:p[0].toLowerCase()}));
+function search(q){q=q.trim().toLowerCase(); if(q.length<2) return [];
+  const a=[],b=[]; for(const p of P){ if(p.l.startsWith(q)) a.push(p); else if(p.l.includes(q)) b.push(p);}
+  const s=(x,y)=>y.w-x.w; a.sort(s); b.sort(s); const out=[],seen=new Set(); for(const p of a.concat(b)){const k=p.l+'|'+p.s.slice(0,4).toLowerCase(); if(seen.has(k)) continue; seen.add(k); out.push(p); if(out.length>=8) break} return out}
+const pts={from:null,to:null};
+function parseLL(v){const m=v.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/); if(!m) return null; const a=+m[1],b=+m[2]; return (a>5&&a<38&&b>67&&b<98)?{lat:a,lon:b,n:a.toFixed(4)+', '+b.toFixed(4)}:null}
+function setupAC(key){
+  const inp=document.getElementById(key), box=document.getElementById('ac-'+key); let items=[],hl=-1;
+  function render(){box.innerHTML='';items.forEach((p,i)=>{const d=document.createElement('div');if(i===hl)d.className='hl';
+    d.innerHTML='<span>'+esc(p.n)+'</span><small>'+esc(p.s)+'</small>';d.onmousedown=e=>{e.preventDefault();choose(p)};box.appendChild(d)});box.hidden=!items.length}
+  function choose(p){setPoint(key,{lat:p.lat,lon:p.lon,n:p.n+(p.s?', '+p.s:'')});items=[];render();}
+  inp.addEventListener('input',()=>{pts[key]=null;placePins();const ll=parseLL(inp.value);items=ll?[]:search(inp.value);hl=items.length?0:-1;render()});
+  inp.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){hl=Math.min(items.length-1,hl+1);render();e.preventDefault()}
+    else if(e.key==='ArrowUp'){hl=Math.max(0,hl-1);render();e.preventDefault()}
+    else if(e.key==='Enter'){const ll=parseLL(inp.value); if(ll) setPoint(key,ll); else if(items[hl]) choose(items[hl]); else if(pts.from&&pts.to) runRoute(); e.preventDefault()}
+    else if(e.key==='Escape'){items=[];render()}});
+  inp.addEventListener('blur',()=>setTimeout(()=>{items=[];render()},120));
+}
+setupAC('from');setupAC('to');
+const pins={};
+function pinIcon(k){return L.divIcon({className:'',iconSize:[22,22],iconAnchor:[11,11],html:'<div class="pin '+(k==='to'?'b':'')+'">'+(k==='to'?'B':'A')+'</div>'})}
+function placePins(){['from','to'].forEach(k=>{const p=pts[k];
+  if(!p){if(pins[k]){map.removeLayer(pins[k]);pins[k]=null}return}
+  if(!pins[k]){pins[k]=L.marker([p.lat,p.lon],{icon:pinIcon(k),draggable:true,zIndexOffset:1000,title:k==='from'?'Start':'Destination'}).addTo(map);
+    pins[k].on('dragend',e=>{const ll=e.target.getLatLng();setPoint(k,{lat:ll.lat,lon:ll.lng,n:ll.lat.toFixed(4)+', '+ll.lng.toFixed(4)})})}
+  else pins[k].setLatLng([p.lat,p.lon])})}
+function setPoint(k,p){pts[k]=p;document.getElementById(k).value=p.n;placePins();
+  if(pts.from&&pts.to) runRoute(); else map.panTo([p.lat,p.lon])}
+let picking=null; const toastEl=document.createElement('div'); toastEl.className='toast'; toastEl.hidden=true; document.getElementById('map').appendChild(toastEl);
+function pick(k){picking=picking===k?null:k;document.body.classList.toggle('picking',!!picking);
+  document.getElementById('pickFrom').classList.toggle('on',picking==='from');document.getElementById('pickTo').classList.toggle('on',picking==='to');
+  toastEl.hidden=!picking; toastEl.textContent='Click the map to set the '+(k==='from'?'start':'destination')}
+document.getElementById('pickFrom').onclick=()=>pick('from');document.getElementById('pickTo').onclick=()=>pick('to');
+map.on('click',e=>{if(!picking)return;const k=picking;pick(k);setPoint(k,{lat:e.latlng.lat,lon:e.latlng.lng,n:e.latlng.lat.toFixed(4)+', '+e.latlng.lng.toFixed(4)})});
+document.getElementById('swap').onclick=()=>{const a=pts.from,b=pts.to;pts.from=b;pts.to=a;document.getElementById('from').value=b?b.n:'';document.getElementById('to').value=a?a.n:'';placePins();if(a&&b)runRoute()};
+document.getElementById('clear').onclick=()=>{clearRoute();pts.from=pts.to=null;document.getElementById('from').value='';document.getElementById('to').value='';placePins()};
+document.getElementById('corridor').onchange=()=>{if(route)analyseRoute()};
+document.getElementById('go').onclick=()=>{
+  ['from','to'].forEach(k=>{if(!pts[k]){const v=document.getElementById(k).value;const ll=parseLL(v);if(ll)pts[k]=ll;else{const r=search(v);if(r[0]){pts[k]={lat:r[0].lat,lon:r[0].lon,n:r[0].n+(r[0].s?', '+r[0].s:'')};document.getElementById(k).value=pts[k].n}}}});
+  placePins(); if(pts.from&&pts.to) runRoute(); else showMsg('Choose a start and a destination from the suggestions, type coordinates, or use Pick to click the map.')};
+
+// ---------- routing on embedded highway graph ----------
+function hav(a1,o1,a2,o2){const r=Math.PI/180,dA=(a2-a1)*r,dO=(o2-o1)*r,x=Math.sin(dA/2)**2+Math.cos(a1*r)*Math.cos(a2*r)*Math.sin(dO/2)**2;return 12742*Math.asin(Math.sqrt(x))}
+const NN=GC.length, adj=Array.from({length:NN},()=>[]);
+D.g.e.forEach(([a,b,d])=>{adj[a].push(b,d);adj[b].push(a,d)});
+function nearestNode(lat,lon){let b=-1,bd=1e9;for(let i=0;i<NN;i++){const dy=GC[i][0]-lat,dx=(GC[i][1]-lon)*Math.cos(lat*Math.PI/180),d=dx*dx+dy*dy;if(d<bd){bd=d;b=i}}return b}
+function dijkstra(s,t){
+  const dist=new Float64Array(NN).fill(Infinity),prev=new Int32Array(NN).fill(-1);dist[s]=0;
+  const h=[[0,s]];const push=x=>{h.push(x);let i=h.length-1;while(i){const p=(i-1)>>1;if(h[p][0]<=h[i][0])break;[h[p],h[i]]=[h[i],h[p]];i=p}};
+  const pop=()=>{const top=h[0],last=h.pop();if(h.length){h[0]=last;let i=0;for(;;){const l=2*i+1,r=l+1;let m=i;if(l<h.length&&h[l][0]<h[m][0])m=l;if(r<h.length&&h[r][0]<h[m][0])m=r;if(m===i)break;[h[m],h[i]]=[h[i],h[m]];i=m}}return top};
+  while(h.length){const [d,u]=pop();if(u===t)break;if(d>dist[u])continue;const a=adj[u];for(let k=0;k<a.length;k+=2){const v=a[k],nd=d+a[k+1];if(nd<dist[v]){dist[v]=nd;prev[v]=u;push([nd,v])}}}
+  if(!isFinite(dist[t]))return null;const path=[];for(let u=t;u!==-1;u=prev[u])path.push(u);return path.reverse()}
+let route=null; const routeLayer=L.layerGroup().addTo(map), routeStLayer=L.layerGroup().addTo(map);
+function clearRoute(){route=null;routeLayer.clearLayers();routeStLayer.clearLayers();document.getElementById('map').classList.remove('dim');document.getElementById('routeOut').innerHTML=''}
+function showMsg(t){document.getElementById('routeOut').innerHTML='<p class="note alert">'+esc(t)+'</p>'}
+function runRoute(){
+  const a=pts.from,b=pts.to; const na=nearestNode(a.lat,a.lon), nb=nearestNode(b.lat,b.lon);
+  const path=na===nb?[na]:dijkstra(na,nb); if(!path){showMsg('No highway connection found between these points.');return}
+  const line=[[a.lat,a.lon]].concat(path.map(i=>GC[i]),[[b.lat,b.lon]]);
+  const cum=[0];for(let i=1;i<line.length;i++)cum.push(cum[i-1]+hav(line[i-1][0],line[i-1][1],line[i][0],line[i][1]));
+  route={line,cum,total:cum[cum.length-1],offA:hav(a.lat,a.lon,GC[na][0],GC[na][1]),offB:hav(b.lat,b.lon,GC[nb][0],GC[nb][1])};
+  analyseRoute(true);
+}
+function sliceLine(a,b){const L0=route.line,cum=route.cum,out=[];
+  const at=x=>{let i=1;while(i<cum.length-1&&cum[i]<x)i++;const t=(x-cum[i-1])/((cum[i]-cum[i-1])||1);return [L0[i-1][0]+(L0[i][0]-L0[i-1][0])*t,L0[i-1][1]+(L0[i][1]-L0[i-1][1])*t]};
+  out.push(at(a));for(let i=0;i<cum.length;i++)if(cum[i]>a&&cum[i]<b)out.push(L0[i]);out.push(at(b));return out}
+function analyseRoute(fit){
+  const buf=+document.getElementById('corridor').value, L0=route.line, cum=route.cum;
+  // segment grid
+  const cell=0.25, grid=new Map(), pad=buf/100+0.01;
+  for(let i=1;i<L0.length;i++){const [y1,x1]=L0[i-1],[y2,x2]=L0[i];
+    for(let gy=Math.floor((Math.min(y1,y2)-pad)/cell);gy<=Math.floor((Math.max(y1,y2)+pad)/cell);gy++)
+      for(let gx=Math.floor((Math.min(x1,x2)-pad)/cell);gx<=Math.floor((Math.max(x1,x2)+pad)/cell);gx++){const k=gy*10000+gx;let a=grid.get(k);if(!a)grid.set(k,a=[]);a.push(i)}}
+  const hits=[];
+  for(let s=0;s<N;s++){
+    const lat=S.lat[s],lon=S.lon[s],segs=grid.get(Math.floor(lat/cell)*10000+Math.floor(lon/cell)); if(!segs) continue;
+    const kx=111.32*Math.cos(lat*Math.PI/180),ky=110.57; let best=1e9,along=0;
+    for(const i of segs){const [y1,x1]=L0[i-1],[y2,x2]=L0[i];
+      const ax=(x1-lon)*kx,ay=(y1-lat)*ky,bx=(x2-lon)*kx,by=(y2-lat)*ky,dx=bx-ax,dy=by-ay,l2=dx*dx+dy*dy;
+      let t=l2?-(ax*dx+ay*dy)/l2:0;t=Math.max(0,Math.min(1,t));const px=ax+dx*t,py=ay+dy*t,d=Math.sqrt(px*px+py*py);
+      if(d<best){best=d;along=cum[i-1]+(cum[i]-cum[i-1])*t}}
+    if(best<=buf) hits.push({s,d:best,km:along});
+  }
+  hits.sort((x,y)=>x.km-y.km);
+  // longest stretch without fast DC (all operators)
+  const fastKm=[0].concat(hits.filter(h=>S.sp[h.s]===3).map(h=>h.km),[route.total]);
+  let gap=0,ga=0,gb=0;for(let i=1;i<fastKm.length;i++){const g=fastKm[i]-fastKm[i-1];if(g>gap){gap=g;ga=fastKm[i-1];gb=fastKm[i]}}
+  const shown=hits.filter(h=>visible(h.s));
+  // draw
+  routeLayer.clearLayers();routeStLayer.clearLayers();
+  L.polyline(L0,{pane:'route',renderer:rRoute,color:C['--panel'],weight:9,opacity:.9,interactive:false}).addTo(routeLayer);
+  L.polyline(L0,{pane:'route',renderer:rRoute,color:C['--route'],weight:5,opacity:1,interactive:false}).addTo(routeLayer);
+  if(gap>0&&route.total>0&&gap>=60) L.polyline(sliceLine(ga,gb),{pane:'route',renderer:rRoute,color:C['--warn'],weight:5,dashArray:'2 9',lineCap:'round',interactive:false}).addTo(routeLayer);
+  shown.forEach(h=>{const i=h.s;const m=L.circleMarker([S.lat[i],S.lon[i]],{renderer:rRouteSt,pane:'routeSt',radius:S.sp[i]===3?7:5.5,weight:2,color:C['--panel'],fillColor:spCol(S.sp[i]),fillOpacity:1});m.on('click',()=>openStation(i));m.addTo(routeStLayer)});
+  document.getElementById('map').classList.add('dim');
+  if(fit) map.fitBounds(L.latLngBounds(L0).pad(0.08));
+  // panel
+  const byS=[0,0,0,0];shown.forEach(h=>byS[S.sp[h.s]]++);
+  const fastN=hits.filter(h=>S.sp[h.s]===3).length;
+  const g='https://www.google.com/maps/dir/?api=1&origin='+pts.from.lat+','+pts.from.lon+'&destination='+pts.to.lat+','+pts.to.lon+'&travelmode=driving';
+  let h='<div class="stats"><div class="stat"><b>'+fmt(Math.round(route.total))+' km</b><span>via national highways</span></div>'+
+    '<div class="stat"><b>'+fmt(shown.length)+'</b><span>stations within '+buf+' km'+(shown.length!==hits.length?' (filtered)':'')+'</span></div>'+
+    '<div class="stat"><b>'+fmt(fastN)+'</b><span>fast DC (25 kW+), any operator</span></div>'+
+    '<div class="stat'+(gap>=150?' warn':'')+'"><b>'+fmt(Math.round(gap))+' km</b><span>longest stretch without fast DC</span></div></div>';
+  h+='<div class="chips">'+SPEED.map((s,k)=>'<span class="chip" style="cursor:default"><span class="sw" style="background:var(--s'+k+')"></span>'+s.k+' <small>'+fmt(byS[k])+'</small></span>').join('')+'</div>';
+  if(gap>=60) h+='<p class="note">The dotted orange stretch (km '+fmt(Math.round(ga))+'–'+fmt(Math.round(gb))+') is the longest part of the route with no fast DC charger within '+buf+' km.</p>';
+  if(route.offA>25||route.offB>25) h+='<p class="note alert">The '+(route.offA>25?'start':'destination')+' is '+Math.round(Math.max(route.offA,route.offB))+' km from the nearest highway in this network, so the first or last leg is drawn as a straight line.</p>';
+  h+='<p class="note">The route follows the national and major highway network, so distances are approximate. <a href="'+g+'" target="_blank" rel="noopener">Open turn-by-turn directions in Google Maps</a>.</p>';
+  if(shown.length){h+='<span class="lbl">Stations along the way, by distance from start</span><ol class="stops">';
+    const lim=Math.min(shown.length,600);
+    for(let k=0;k<lim;k++){const x=shown[k],i=x.s;const place=[title(D.cities[S.ci[i]]),D.states[S.st[i]]].filter(Boolean).join(', ');
+      h+='<li data-i="'+i+'"><div class="stone" aria-label="km '+Math.round(x.km)+'"><i>KM</i><b>'+Math.round(x.km)+'</b></div><div class="stop-t"><strong>'+D.ops[S.op[i]]+' <span class="kw" style="--kc:var(--s'+S.sp[i]+')">'+S.kw[i]+' kW</span></strong><span>'+D.types[S.ty[i]]+' · '+S.n[i]+' connector'+(S.n[i]>1?'s':'')+' · '+x.d.toFixed(1)+' km off route</span><span>'+esc(place)+'</span></div></li>'}
+    h+='</ol>'; if(shown.length>lim) h+='<p class="note">Showing the first '+lim+'. Narrow the corridor or filter by speed to see the rest.</p>';
+  } else h+='<p class="note">No stations match the current filters along this route. Widen the corridor or turn more speeds and operators back on in Filters.</p>';
+  const out=document.getElementById('routeOut'); out.innerHTML=h;
+  out.querySelectorAll('li[data-i]').forEach(li=>li.onclick=()=>{const i=+li.dataset.i;map.setView([S.lat[i],S.lon[i]],Math.max(map.getZoom(),13));openStation(i);if(innerWidth<=760&&!panel.classList.contains('collapsed'))tg.click()});
+}
+
+// ---------- theme follow ----------
+function restyle(){readColors();landLayer.setStyle({color:C['--border'],fillColor:C['--land']});roadLayer.eachLayer(l=>l.setStyle({color:C['--road']}));
+  markers.forEach(m=>m.setStyle({color:C['--panel'],fillColor:spCol(S.sp[m.idx])}));cluster.refreshClusters();if(route)analyseRoute()}
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',restyle)}catch(e){}
+new MutationObserver(restyle).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+// ---------- start ----------
+refreshStations();
+pts.from={lat:28.6139,lon:77.209,n:'Delhi'}; pts.to={lat:26.9124,lon:75.7873,n:'Jaipur, Rajasthan'};
+document.getElementById('from').value=pts.from.n; document.getElementById('to').value=pts.to.n;
+document.getElementById('routeOut').innerHTML='<p class="note">Example filled in: Delhi to Jaipur. Choose <b>Show route and chargers</b>, or type your own start and destination. You can also drag the A and B pins on the map.</p>';
+placePins();
+})();
+</script>

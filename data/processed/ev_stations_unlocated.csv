@@ -1,0 +1,128 @@
+operator,ownership,state,district,city,address,latitude,longitude,connector_type,charger_kw,connector_kw,connectors,coord_status,state_source,speed_class
+IOCL,Government,Arunachal Pradesh,Namsai,Namsai,Chainage 829.872 Manmow Village P.O& P.S- Namsai Dist- Namsai,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Arunachal Pradesh,Leparada,Leparada,P.O. Basar Dist. West-Siang Arunachal Pradesh,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Assam,Jorhat,Jorhat,A.T. Road Tarajan Jorhat Assam,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Assam,Jorhat,Jorhat,Nagabat Jorhat Assam,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Assam,Dima,Hasao,Dima Hasao P.O. Maibong Kalibari Road Dist. Dima Hasao Assam,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Assam,Jorhat,Jorhat,Titabar Jorhat Dist : Jorhat,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+HPCL,Government,Bihar,Kishanganj,Kishanganj,"Kachchunala,Padampur",,,Bharat AC-001,3.0,3.0,1,outside_india,source,Slow
+HPCL,Government,Bihar,Siwan,Siwan,Renuka Nagar,,,Bharat AC-001,3.0,3.0,1,outside_india,source,Slow
+IOCL,Government,Bihar,Patna,Patna,Indian Oil Retail Outlet At-Chanakianchal-Dhanarua Dist-Patna,,,LEV AC Charge point,3.3,3.3,1,outside_india,source,Slow
+IOCL,Government,Bihar,Nawada,Nawada,Indian Oil Retail Outlet At-Makhar Anchal- Akbarpur Dist-Nawada,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,Bihar,Nawada,Nawada,Indian Oil Retail Outlet At-Rampur Anchal-Pakribarawan Dist-Nawada,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,Bihar,Madhepura,Madhepura,Vill-Bishanpur Ps-Alamnagar Dist-Madhepura,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Gujarat,Surat,Surat,City Indian Oil Dealer Survey No.978-979B. No 926 Variav- Surat City,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Gujarat,Kachchh,Kutch,Survey No.680/Paiki 1 Village-Godhra Taluka-Mandvi,,,LEV AC Charge point,3.3,3.3,1,outside_india,source,Slow
+IOCL,Government,Haryana,Gurugram,Gurgaon,Dealer: Indian Oil Corporation Limi At Vill.Kadarpur Sector 63A Gurgaon Haryana,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Gurugram,Gurgaon,Dealer-Indian Oil Corporation Limit Vill.-Dhunelaon Gurgaon-Sohna Road District Gurgaon,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Yamunanagar,Yamunanagar,Indian Oil Petrol Pump Village Aurangabad On Sh06 Tehsil Jagadhari,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Yamunanagar,Yamunanagar,Indian Oil Petrol Pump Village Fatehpur On Jhota Road Block Jagadhari,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Bhiwani,Bhiwani,Indian Oil Retail Outlet (Ksk) Village-Dariyapurdist-Bhiwani On Mdr-109(Tosham-Siwani Road),,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Hisar,Hisar,Indian Oil Retail Outlet (Ksk) Village-Malapurdistrict-Hisar On Malapur- Jakhod Khera Road,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Rohtak,Rohtak,Indian Oil Retail Outlet (Ksk) Village-Ritolidistrict-Rohtak On Rohtak-Beri Road,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Kurukshetra,Kurukshetra,Indian Oil Retail Outlet Village Ladwa Bhadson Road Ladwa,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Sirsa,Sirsa,Indian Oil Retail Outlet Village-Bhambhoordistt-Sirsa Between Bhambhoor & Ottu Head,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Hisar,Hisar,Indian Oil Retail Outlet Village-Hansidistrict-Hisar Between Jaat Dharamshala & Sd,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Hisar,Hisar,Indian Oil Retail Outlet Village-Mirchpur On Sh-10 Tehsil-Kheri Jalabdistt-Hisar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Rohtak,Rohtak,Indian Oil Retail Outlet Village-Paradistrict-Rohtak From New Bus Stand To Sheela,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Gurugram,Gurgaon,Mustakil No 24 Killa No 19/2/2 19/2/2/1/1 Sec-86 Village Badha,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Haryana,Jhajjar,Jhajjar,Village Badsha Mdr-136 Block Badli,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Himachal Pradesh,Shimla,Shimla,Lamba Khatal Rohru-Chirgaon Road Tehsil Rohru Distt. Shimla Lamba Khatalrohru-Chirgaon Rd,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Himachal Pradesh,Hamirpur,Hamirpur,Village Balute Post Office Lambloo Tehsil& Distt. Hamirpur (H.P.) Village Balute,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Jammu & Kashmir,Pulwama,Pulwama,"Indian Oil Petrol Pump ""Padgampora""Awantipur District Pulwama",,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Jammu & Kashmir,Jammu,Jammu,Indian Oil Petrol Pump Bantalab - Thattar Jammu Bantalab - Thattar Jammu,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Jammu & Kashmir,Shopian,Shopian,Indian Oil Petrol Pump Hergam-Shopian District : Shopian,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Jammu & Kashmir,Shopian,Shopian,Village Wachohallan Tehsil Imam Sahib Dist Shopian,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+BPCL,Government,Jammu & Kashmir,JAMMU,NAGROTA,"JAGTI, NH44, , City=NAGROTA, District=JAMMU, State=Jammu & Kashmir",,,CCS,120.0,120.0,2,outside_india,source,Fast DC
+IOCL,Government,Karnataka,Belagavi,Belgaum,Gokak Falls Road Sy. No.220/1A/1 Gokak Falls Road Tq. Gokak,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,Karnataka,Chitradurga,Chitradurga,Indianoil Dealers Sy.No.10 Pilali Village Hiriyur Taluk,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Karnataka,Davanagere,Davangere,Indianoil Dealers Sy.No.44/1B Khata No.657 Tyavanagi Vill Channagiri Tq,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Karnataka,Koppal,Koppal,Indianoil Dealers Sy.No.98/3 Hosakera Village Gangavathi - Singanal Road,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Karnataka,Bidar,Bidar,Sy. No. 111/3 Nirgudi Village Basavakalyan Taluk Bidar District,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Karnataka,Bidar,Bidar,Sy.No.125 Partkadwad Village Bagdal Hobli Bidar Taluk & District,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+OLA,Private,Karnataka,Bengaluru,Urban,Bangalore Bhuvaneshwari Nagar,,,DC Charge Point (IS-17017-2-6),3.3,3.3,1,missing,source,Slow
+OLA,Private,Karnataka,Bengaluru,Urban,Bangalore Kengeri,,,DC Charge Point (IS-17017-2-6),3.3,3.3,1,missing,source,Slow
+BPCL,Government,Karnataka,Chikkaballapura,CHELUR,"SY NO 76, KANDAKUR MAIN ROAD, CHELURU, , City=CHELUR, District=CHIKBALLAPUR, State=Karnataka",,,CCS,60.0,60.0,2,outside_india,source,Fast DC
+BPCL,Government,Kerala,ALAPPUZHA,NEDUMUDI,"NEAR KALLAMPALLY TEMPLE, CHAMPAKULAM P O, , City=NEDUMUDI, District=ALAPPUZHA, State=Kerala",,,Bharat AC,3.0,3.0,1,outside_india,source,Slow
+IOCL,Government,Maharashtra,Sindhudurg,Sindhudurg,Asalade Tal- Kankavali Dist- Sindhudurg Maharashtra,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,Maharashtra,Ahilyanagar,Ahmadnagar,Gat No 114/5 Village Ranjankhol Taluka Rahata,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,Maharashtra,Pune,Pune,Gat No. 1400/1 Village Markal Taluka Khed District Pune,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Maharashtra,Ahilyanagar,Ahmadnagar,Gat No. 694 Village Loni Khurd Taluka Rahata,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Maharashtra,Pune,Pune,Gat No.1718/2 Village Shelgaon Taluka Indapur Pune,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,Odisha,Kendrapara,Kendrapara,At Balia Ps Pattamunbdai Pattamundai Rajnagar Road Dist. Kendrapara,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Cuttack,Cuttack,At- Mahalpada Po- Kakhadi Ps- Choudwar Dist- Cuttack,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Cuttack,Cuttack,At Malisahi Alasua Po Baideswar Via Kalapathar Dist Cuttack,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Cuttack,Cuttack,At- Umar Po- Jhadeswarpur Via- Nischinta Koile Dist- Cuttack,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Sundargarh,Sundargarh,At/Po- Bhoipali Ps/Via - Bargaon Dist-Sundergarh Odisha,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Kendujhar,Keonjhar,At: Nh-6 Khireitangiri Po: Khireitangiri Dist: Keonjhar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Kendujhar,Keonjhar,At-Arsala Dist- Keonjhar Orissa,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Kendujhar,Keonjhar,At-Balda Po-Bamebari Ps-Bamebari Dist-Keonjhar Odisha Pin,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Rayagada,Rayagada,At-Khurigaon Ps- Kashipur Dist- Rayagada Odisha Pin,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Cuttack,Cuttack,Bentapada Athagarh Dist. Cuttack,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Kendujhar,Keonjhar,Gondijoda Po-Suakati Ps-Sadardist-Keonjhar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Kendujhar,Keonjhar,Indian Oil Retail Outlet At/Po-Keonjhar Ps- Sadar Town Dist-Keonjhar Odisha Pin,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Dhenkanal,Dhenkanal,Kasiadihi Ps Dhenkanal Sadar Tahsil Odapada Dist. Dhenkanal,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Jajapur,Jajpur,Rudrapur P. S. Binjharpur Dist. Jajpur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Cuttack,Cuttack,Sundargaon Tahsil Kantapada Dist Cuttack,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Odisha,Jagatsinghpur,Jagatsinghpur,Tarajanga On Sh12 Ps Tirtol Dist. Jagatsinghpur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+HPCL,Government,Punjab,Fazilka,Fazilka,Fazilka,,,CCS-II,60.0,60.0,1,outside_india,source,Fast DC
+HPCL,Government,Punjab,Moga,Moga,Moga,,,CCS-II,30.0,30.0,1,outside_india,source,Fast DC
+IOCL,Government,Punjab,Hoshiarpur,Hoshiarpur,Indian Oil Petrol Pump Hussianpur Guru Tehsil Hariana,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Hoshiarpur,Hoshiarpur,Indian Oil Petrol Pump Village Burobari Tehsil Garhshankar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Ferozepur,Firozpur,Indian Oil Petrol Pump Zira - Talwandi Road Talwandi Bhai,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Hoshiarpur,Hoshiarpur,Ioc Petrol Pumpg.T.Road Dasuya Distt.Hoshiarpur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Bathinda,Bathinda,North Estate 100 Ft Road Bathinda,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Mansa,Mansa,Samoan Tehsil Bhikhi Distt. Mansa,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Bathinda,Bathinda,Transport Nagar Bathinda Distt. Bathinda,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Gurdaspur,Gurdaspur,Village Langerkot Hargobindpur Road Tehsil Gurdaspur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Bathinda,Bathinda,Village Mehraj Block Rampura Tehsil Rampura,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Gurdaspur,Gurdaspur,Village- Paniar Tehsil Dinanagar District Gurdaspur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Ferozepur,Firozpur,Village Panje Ke Block Guruharsahai Tehsil Guruharsahai,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Punjab,Gurdaspur,Gurdaspur,Village Sekhwan District Gurdaspur Punjab,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Dholpur,Dhaulpur,Bayana Road Baseri - 328022 Indian Oil Dealer Distt. Dholpur (Raj.),,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Dausa,Dausa,Indian Oil Petrol Petrol Pump Sikandra To Kalwar Road Vill.- Gilari,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jaipur,Jaipur,Indian Oil Petrol Pump Chomu On Sikar Road Opp Seva Yatan Hospital,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Bundi,Bundi,Indian Oil Petrol Pump Kh No. 466/56 Village -Chamavali Tehsil -Indragarh Dist.-Bundi (Raj,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Dudu,Dudu,Indian Oil Petrol Pump Nh-48(Oldnh-8) Village- Gidani Tehsil- Mauzmabad Distt- Jaipur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Bhilwara,Bhilwara,Indian Oil Petrol Pump Nh-758 Village-Khadela Tehsil-Banera Distt-Bhilwara (Raj.,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Udaipur,Udaipur,Indian Oil Petrol Pump Sh-32 Village-Devgao Tehsil-Salumbe Distt-Udaipur (Raj.),,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Nagaur,Nagaur,Indian Oil Petrol Pump Village Gular Teh.Parbatsardistrict Nagaur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Sikar,Sikar,Indian Oil Petrol Pump Village- Phutala Tehsil-Srimadhopu District- Sikar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jhunjhunu,Jhunjhunun,Indian Oil Petrol Pump Village-Bhagera Teh-Nawalgarhdist-Jhunjhunu,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Udaipur,Udaipur,Indian Oil Petrol Pump Village-Bokhara Ranakpur Road Sh-32 Distt-Udaipur (Raj.),,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jaipur,Jaipur,Indian Oil Petrol Pump Village-Kanarpura Tehsil-Chomu Dist-Jaipur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Bhilwara,Bhilwara,Indianoil Petrol Pump Village-Barundani Tehsil-Mandalgarh Distt-Bhilwara,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Bikaner,Bikaner,Murba No 18/57Kila No13/2/0.218/1 Village Chak -1 Kmtehsil Chhattar District-Anupgarh,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jaisalmer,Jaisalmer,Village - Badi Dhani Tehsil - Bap Jodhpur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jaipur,Jaipur,Village Biharipura Near Tunga On Dausa Tunga Road Tehsil Bassi District Jaipur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Ganganagar,Ganganagar,Village - Chak 10 L.L. Tehsil - Sriganganagar Sriganganagar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Barmer,Barmer,Village - J.K. Mudhansar Tehsil - Gudamalani Barmer,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jodhpur,Jodhpur,Village - Murkasni Tehsil - Bilara Jodhpur Rural,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Rajasthan,Jodhpur,Jodhpur,Village - Panchala Khurd Tehsil - Tinwari Jodhpur Rural,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+HPCL,Government,Tamil Nadu,Tirupathur,Tirupathur,"Hp Petrol Pump Madras Mumbai Road Paiyanapalli Village,Tirupathur Tamil Nadu",,,Bharat AC-001,3.0,3.0,1,missing,source,Slow
+HPCL,Government,Tamil Nadu,Salem,Salem,Thasasamudram,,,CCS-II,30.0,30.0,1,outside_india,source,Fast DC
+HPCL,Government,Tamil Nadu,Tiruchirappalli,Tiruchirappalli,Tiruchirappalli,,,Type-II AC,7.0,7.0,1,missing,source,AC
+IOCL,Government,Tamil Nadu,Chengalpattu,Chengalpattu,Indianoil Dealer S.No.250/1Meyur Village Madurantagam Taluk,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Tripura,Gomati,Gomati,Nh-44 P.O. Udaipur South Tripura Gomati,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Siddharthnagar,Sidharthnagar,"""Pipra"" Siddarthnagar. Dist-Siddharth Nagar",,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Siddharthnagar,Sidharthnagar,Barhani Barhani Dist.Siddharth Nagar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Siddharthnagar,Sidharthnagar,Ioc Dealer Belwa Lagunahi Post.Daldala Distt.Siddharth Nagar,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Mathura,Mathura,Shriji Bankey Bihari Filling Statio Khasra 963 Village Ole Tehsil Mat Ole-Sathook Road Mathura U.P,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Shahjahanpur,Shahjahanpur,Village Alampur Pipariya Taluka Powayan District Shahjahanpur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Sambhal,Sambhal,Village Bholeshwar Sambhal Town Tehsilsambhal,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Firozabad,Firozabad,Village Chamroli Tehsil Shikohabad Distt Firozabad,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Bara,Banki,Barabanki Village Dadra Bet Kms 37-40 On Nh 27 On Rhs While Going Towrads Faizabad,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Shahjahanpur,Shahjahanpur,Village Dhakiya Khurd Tehsil Powayan Shahjahanpur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Sambhal,Sambhal,Village Madala Fatehpur Tehsil Sambhal Sambhal Joya Road,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Rampur,Rampur,Village Raipur Rampur To Shahabad Marg District Rampur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Azamgarh,Azamgarh,Vill-Bhataura Taluka-Sadar Dist-Azamgarh,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,Uttar Pradesh,Azamgarh,Azamgarh,Vill-Molnapur Ahmad Baksh Taluka-Martinganj Distt-Azamgarh,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+BPCL,Government,Uttar Pradesh,MEERUT,MEERUT,"VILLAGE DABATHWA, VILLAGE DABATHWA, , City=MEERUT, District=MEERUT, State=Uttar Pradesh",,,CCS,30.0,30.0,1,outside_india,source,Fast DC
+BPCL,Government,Uttar Pradesh,MEERUT,PARIKSHITGARH,"VILLAGE POOTHI, VILLAGE POOTHI, , City=PARIKSHITGARH, District=MEERUT, State=Uttar Pradesh",,,CCS,60.0,60.0,2,outside_india,source,Fast DC
+IOCL,Government,,,,Uttrakhand Udam Singh Nagar Udhamsigh Nagar Indian Oil Petrol Pump Khasra No.,,,LEV AC Charge point,3.3,3.3,1,missing,from_coordinates,Slow
+HPCL,Government,West Bengal,Purba,Bardhaman,Purba Bardhaman Guskora,,,Bharat AC-001,3.0,3.0,1,outside_india,source,Slow
+IOCL,Government,West Bengal,Hooghly,Hooghly,Hooghly Filling Station Chanditala Hooghly Sh,,,Type-II AC,7.4,7.4,1,missing,source,AC
+IOCL,Government,West Bengal,Paschim,Medinipur,Paschim Medinipur Kiaboni Garhbeta Paschim Medinipur,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,West Bengal,Cooch,Behar,Cooch Bihar N N Roy Road Coochbehar Pin,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
+IOCL,Government,West Bengal,Birbhum,Birbhum,Plot No: 451(P) 618(P) Khatian No. 982 Mouza: Indragachha J.L.No:,,,LEV AC Charge point,3.3,3.3,1,outside_india,source,Slow
+IOCL,Government,West Bengal,Jhargram,Jhargram,Sangita Roy Sakhisol Lalgarh,,,LEV AC Charge point,3.3,3.3,1,missing,source,Slow
